@@ -211,7 +211,7 @@ export default function FormularioDepartamentales() {
         Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
       },
     });
-    const contadores = await resContador.json();
+    
     const ahora = new Date();
 const fecha = String(ahora.getFullYear()).slice(2) +
   String(ahora.getMonth() + 1).padStart(2, "0") +
@@ -231,7 +231,8 @@ if (dataUltimo.length > 0 && dataUltimo[0].numero_ficha) {
   numero = (parseInt(partes[partes.length - 1]) || 0) + 1;
 }
 
-const numeroFicha = "LOC-" + fecha + "-" + String(numero).padStart(3, "0");
+// eslint-disable-next-line no-unused-vars
+const numeroFicha = "DEP-" + fecha + "-" + String(numero).padStart(3, "0");
     if (!resUltimo.ok) throw new Error("Error al guardar en base de datos");
     return await resUltimo.json();
   }
