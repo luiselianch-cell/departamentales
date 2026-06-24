@@ -203,38 +203,42 @@ export default function FormularioDepartamentales() {
     return Object.keys(errs).length === 0;
   }
 
-  async function guardarEnSupabase(orden) {
-    const hoy = new Date().toISOString().split("T")[0];
-      headers: {
-        apikey: process.env.REACT_APP_SUPABASE_KEY,
-        Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
-      },
-    });
-    
-    const ahora = new Date();
-const fecha = String(ahora.getFullYear()).slice(2) +
-  String(ahora.getMonth() + 1).padStart(2, "0") +
-  String(ahora.getDate()).padStart(2, "0");
+ async function guardarEnSupabase(orden) {
+  const ahora = new Date();
+  const fecha = String(ahora.getFullYear()).slice(2) +
+    String(ahora.getMonth() + 1).padStart(2, "0") +
+    String(ahora.getDate()).padStart(2, "0");
 
-const resUltimo = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_locales?select=numero_ficha&order=id.desc&limit=1", {
-  headers: {
-    apikey: process.env.REACT_APP_SUPABASE_KEY,
-    Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
-  },
-});
-const dataUltimo = await resUltimo.json();
+  const resUltimo = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_departamentales?select=numero_ficha&order=id.desc&limit=1", {
+    headers: {
+      apikey: process.env.REACT_APP_SUPABASE_KEY,
+      Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
+    },
+  });
+  const dataUltimo = await resUltimo.json();
 
-let numero = 1;
-if (dataUltimo.length > 0 && dataUltimo[0].numero_ficha) {
-  const partes = dataUltimo[0].numero_ficha.split("-");
-  numero = (parseInt(partes[partes.length - 1]) || 0) + 1;
+  let numero = 1;
+  if (dataUltimo.length > 0 && dataUltimo[0].numero_ficha) {
+    const partes = dataUltimo[0].numero_ficha.split("-");
+    numero = (parseInt(partes[partes.length - 1]) || 0) + 1;
+  }
+
+  const numeroFicha = "LOC-" + fecha + "-" + String(numero).padStart(3, "0");
+
+  const res = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_locales", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: process.env.REACT_APP_SUPABASE_KEY,
+      Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify({ ...orden, numero_ficha: numeroFicha }),
+  });
+  if (!res.ok) throw new Error("Error al guardar en base de datos");
+  return await res.json();
 }
 
-// eslint-disable-next-line no-unused-vars
-const numeroFicha = "DEP-" + fecha + "-" + String(numero).padStart(3, "0");
-    if (!resUltimo.ok) throw new Error("Error al guardar en base de datos");
-    return await resUltimo.json();
-  }
 
   async function enviarWhatsApp(orden) {
     await fetch("https://dbpqfplomejtkoxjpvrn.supabase.co/functions/v1/super-service", {
