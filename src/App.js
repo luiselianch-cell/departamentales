@@ -225,7 +225,7 @@ export default function FormularioDepartamentales() {
     numero = (parseInt(partes[partes.length - 1]) || 0) + 1;
   }
 
-  const numeroFicha = "LOC-" + fecha + "-" + String(numero).padStart(3, "0");
+  const numeroFicha = "DEP-" + fecha + "-" + String(numero).padStart(3, "0");
 
   const res = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_departamentales", {
     method: "POST",
@@ -243,6 +243,8 @@ export default function FormularioDepartamentales() {
 
 
   async function enviarWhatsApp(orden) {
+    console.log ("Phone:", process.env.REACT_APP_WA_PHONE)
+    console.log ("ApiKey:", process.env.REACT_APP_WA_APIKEY)
     await fetch("https://dbpqfplomejtkoxjpvrn.supabase.co/functions/v1/super-service", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
