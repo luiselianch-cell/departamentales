@@ -34,12 +34,22 @@ const TIPOS_ENTREGA = [
   "En agencia de mensajeria (Cliente pasará a recoger)",
 ];
 
-const DEPARTAMENTOS = [
-  "SANTA ANA", "SAN MIGUEL", "AHUACHAPAN", "CABAÑAS",
-  "CHALATENANGO", "CUSCATLAN", "LA LIBERTAD", "LA UNION",
-  "LA PAZ", "MORAZAN", "SONSONATE", "SAN SALVADOR",
-  "SAN VICENTE", "USULUTAN",
-];
+const MUNICIPIOS_POR_DEPTO = {
+  "SAN SALVADOR": ["San Salvador", "Apopa", "Ayutuxtepeque", "Cuscatancingo", "Ciudad Delgado", "Ilopango", "Mejicanos", "Nejapa", "Panchimalco", "Rosario de Mora", "San Marcos", "San Martín", "Santa Tecla", "Santiago Texacuangos", "Santo Tomás", "Soyapango", "Tonacatepeque"],
+  "SANTA ANA": ["Santa Ana", "Candelaria de la Frontera", "Chalchuapa", "Coatepeque", "El Congo", "El Porvenir", "Masahuat", "Metapán", "San Antonio Pajonal", "San Sebastián Salitrillo", "Santa Rosa Guachipilín", "Santiago de la Frontera", "Texistepeque"],
+  "SAN MIGUEL": ["San Miguel", "Carolina", "Ciudad Barrios", "Comacarán", "Chapeltique", "Chinameca", "Chirilagua", "El Tránsito", "Lolotique", "Moncagua", "Nueva Guadalupe", "Nuevo Edén de San Juan", "Quelepa", "San Antonio", "San Gerardo", "San Jorge", "San Luis de la Reina", "San Rafael Oriente", "Sesori", "Uluazapa"],
+  "AHUACHAPAN": ["Ahuachapán", "Apaneca", "Atiquizaya", "Concepción de Ataco", "El Refugio", "Guaymango", "Jujutla", "San Francisco Menéndez", "San Lorenzo", "San Pedro Puxtla", "Tacuba", "Turín"],
+  "CABAÑAS": ["Sensuntepeque", "Cinquera", "Dolores", "Guacotecti", "Ilobasco", "Jutiapa", "San Isidro", "Tejutepeque", "Victoria"],
+  "CHALATENANGO": ["Chalatenango", "Agua Caliente", "Arcatao", "Azacualpa", "Cancasque", "Citalá", "Comalapa", "Concepción Quezaltepeque", "Dulce Nombre de María", "El Carrizal", "El Paraíso", "La Laguna", "La Palma", "La Reina", "Las Vueltas", "Nombre de Jesús", "Nueva Concepción", "Nueva Trinidad", "Ojos de Agua", "Potonico", "San Antonio de la Cruz", "San Antonio Los Ranchos", "San Fernando", "San Francisco Lempa", "San Francisco Morazán", "San Ignacio", "San Isidro Labrador", "San Luis del Carmen", "San Miguel de Mercedes", "San Rafael", "Santa Rita", "Tejutla"],
+  "CUSCATLAN": ["Cojutepeque", "Candelaria", "El Carmen", "El Rosario", "Monte San Juan", "Oratorio de Concepción", "San Bartolomé Perulapía", "San Cristóbal", "San José Guayabal", "San Pedro Perulapán", "San Rafael Cedros", "San Ramón", "Santa Cruz Analquito", "Santa Cruz Michapa", "Suchitoto", "Tenancingo"],
+  "LA LIBERTAD": ["Santa Tecla", "Antiguo Cuscatlán", "Chiltiupán", "Ciudad Arce", "Colón", "Comasagua", "Huizúcar", "Jayaque", "Jicalapa", "La Libertad", "Nuevo Cuscatlán", "San Juan Opico", "Quezaltepeque", "Sacacoyo", "San Matías", "San Pablo Tacachico", "Talnique", "Tamanique", "Teotepeque", "Tepecoyo", "Zaragoza"],
+  "LA UNION": ["La Unión", "Anamorós", "Bolívar", "Concepción de Oriente", "Conchagua", "El Carmen", "El Sauce", "Intipucá", "Lislique", "Meanguera del Golfo", "Nueva Esparta", "Pasaquina", "Polorós", "San Alejo", "San José", "Santa Rosa de Lima", "Yayantique", "Yucuaiquín"],
+  "LA PAZ": ["Zacatecoluca", "Cuyultitán", "El Rosario", "Jerusalén", "Mercedes La Ceiba", "Olocuilta", "Paraíso de Osorio", "San Antonio Masahuat", "San emigdio", "San Francisco Chinameca", "San Juan Nonualco", "San Juan Talpa", "San Juan Tepezontes", "San Luis Talpa", "San Miguel Tepezontes", "San Pedro Masahuat", "San Pedro Nonualco", "San Rafael Obrajuelo", "Santa María Ostuma", "Santiago Nonualco", "Tapalhuaca"],
+  "MORAZAN": ["San Francisco Gotera", "Arambala", "Cacaopera", "Chilanga", "Corinto", "Delicias de Concepción", "El Divisadero", "El Rosario", "Gualococti", "Guatajiagua", "Joateca", "Jocoaitique", "Jocoro", "Lolotiquillo", "Meanguera", "Osicala", "Perquín", "San Carlos", "San Fernando", "San Isidro", "San Simón", "Sensembra", "Sociedad", "Torola", "Yamabal", "Yoloaiquín"],
+  "SONSONATE": ["Sonsonate", "Acajutla", "Armenia", "Caluco", "Cuisnahuat", "Santa Isabel Ishuatán", "Izalco", "Juayúa", "Nahuizalco", "Nahulingo", "Salcoatitán", "San Antonio del Monte", "San Julián", "Santa Catarina Masahuat", "Santo Domingo de Guzmán", "Sonzacate"],
+  "SAN VICENTE": ["San Vicente", "Apastepeque", "Guadalupe", "San Cayetano Istepeque", "San Esteban Catarina", "San Ildefonso", "San Lorenzo", "San Sebastián", "Santa Clara", "Santo Domingo", "Tecoluca", "Tepetitán", "Verapaz"],
+  "USULUTAN": ["Usulután", "Alegría", "Berlín", "California", "Concepción Batres", "El Triunfo", "Ereguayquín", "Estanzuelas", "Jiquilisco", "Jucuapa", "Jucuarán", "Mercedes Umaña", "Nueva Granada", "Ozatlán", "Puerto El Triunfo", "San Agustín", "San Buenaventura", "San Dionisio", "San Francisco Javier", "Santa Elena", "Santa María", "Santiago de María", "Tecapán"],
+};
 
 const FORMAS_PAGO = ["Efectivo", "Transferencia", "Tarjeta", "PayPal", "Otro"];
 const TIPOS_COMPROBANTE = ["Ticket", "Factura", "Sin comprobante"];
@@ -99,7 +109,7 @@ const inputStyle = (disabled) => ({
   fontSize: "0.93rem",
   outline: "none",
   boxSizing: "border-box",
-  fontFamily: "'DM Sans', sans-serif",
+  fontFamily: "'Inter', sans-serif",
 });
 
 function CustomSelect({ name, value, onChange, disabled, options, placeholder = "Selecciona…" }) {
@@ -165,10 +175,13 @@ export default function FormularioDepartamentales() {
   const isLoading = status === "loading";
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setForm((p) => ({ ...p, [name]: value }));
-    if (errors[name]) setErrors((p) => ({ ...p, [name]: false }));
+  const { name, value } = e.target;
+  if (name === "departamento") {
+    setForm(p => ({ ...p, departamento: value, municipio: "" }));
+  } else {
+    setForm(p => ({ ...p, [name]: value }));
   }
+}
 
   function validate() {
     const required = [
@@ -191,39 +204,26 @@ export default function FormularioDepartamentales() {
       },
     });
     const contadores = await resContador.json();
-    let numeroFicha = 1;
-    if (contadores.length === 0) {
-      await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/contadores_diarios", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: process.env.REACT_APP_SUPABASE_KEY,
-          Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
-        },
-        body: JSON.stringify({ fecha: hoy, ultimo_numero: 1 }),
-      });
-    } else {
-      numeroFicha = contadores[0].ultimo_numero + 1;
-      await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/contadores_diarios?fecha=eq." + hoy, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: process.env.REACT_APP_SUPABASE_KEY,
-          Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
-        },
-        body: JSON.stringify({ ultimo_numero: numeroFicha }),
-      });
-    }
-    const res = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_departamentales", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        apikey: process.env.REACT_APP_SUPABASE_KEY,
-        Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
-        Prefer: "return=representation",
-      },
-      body: JSON.stringify({ ...orden, numero_ficha: numeroFicha }),
-    });
+    const hoy = new Date();
+const fecha = String(hoy.getFullYear()).slice(2) +
+  String(hoy.getMonth() + 1).padStart(2, "0") +
+  String(hoy.getDate()).padStart(2, "0");
+
+const resUltimo = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_locales?select=numero_ficha&order=id.desc&limit=1", {
+  headers: {
+    apikey: process.env.REACT_APP_SUPABASE_KEY,
+    Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
+  },
+});
+const dataUltimo = await resUltimo.json();
+
+let numero = 1;
+if (dataUltimo.length > 0 && dataUltimo[0].numero_ficha) {
+  const partes = dataUltimo[0].numero_ficha.split("-");
+  numero = (parseInt(partes[partes.length - 1]) || 0) + 1;
+}
+
+const numeroFicha = "LOC-" + fecha + "-" + String(numero).padStart(3, "0");
     if (!res.ok) throw new Error("Error al guardar en base de datos");
     return await res.json();
   }
@@ -235,20 +235,18 @@ export default function FormularioDepartamentales() {
       body: JSON.stringify({
         phone: process.env.REACT_APP_WA_PHONE,
         apikey: process.env.REACT_APP_WA_APIKEY,
-        message: "Ficha #" + orden.numero_ficha + " — Departamental" +
-          "\n" + orden.fecha_orden +
-          "\n" + orden.articulos +
-          "\n" + (orden.nombre_cliente || "Sin nombre") +
-          "\n" + (orden.numero_contacto || "-") +
-          "\n" + orden.tipo_entrega +
-          "\n" + orden.departamento + " — " + orden.municipio +
-          "\n" + (orden.direccion_entrega || "-") +
-          "\n" + orden.total_pagar +
-          "\n" + orden.forma_pago +
-          "\n" + orden.tipo_comprobante +
-          "\n" + orden.perfil_salio +
-          "\n" + orden.quien_ingresa +
-          "\n" + (orden.comentario_libre || "Sin notas"),
+       message: "🗂 Orden " + orden.numero_ficha +
+  "\n📅 " + orden.fecha_orden +
+  "\n📦 " + orden.articulos +
+  "\n👤 " + (orden.nombre_cliente || "Sin nombre") +
+  "\n📱 " + (orden.numero_contacto || "-") +
+  "\n📍 " + orden.municipio + " — " + orden.direccion_entrega +
+  "\n🕐 " + (orden.hora_limite || "Sin hora límite") +
+  "\n💰 " + orden.total_pagar +
+  "\n💳 " + orden.forma_pago + " | " + orden.tipo_comprobante +
+  "\n📲 " + orden.perfil_salio_1 +
+  "\n👥 " + orden.quien_ingresa +
+  "\n📝 " + (orden.comentario_libre || "Sin notas"),
       }),
     });
   }
@@ -272,7 +270,7 @@ export default function FormularioDepartamentales() {
   const err = (k) => errors[k] ? { border: "1px solid " + C.error } : {};
 
   return (
-    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'DM Sans', system-ui, sans-serif", padding: "2rem 1rem 4rem" }}>
+    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Inter', system-ui, sans-serif", padding: "2rem 1rem 4rem" }}>
       <div style={{ maxWidth: 560, margin: "0 auto" }}>
         <div style={{ marginBottom: "1.75rem", textAlign: "center" }}>
           <div style={{
@@ -332,8 +330,15 @@ export default function FormularioDepartamentales() {
               {errors.departamento && <div style={{ height: 1, background: C.error, marginTop: 2 }} />}
             </Field>
             <Field label="Municipio de entrega" required>
-              <input name="municipio" value={form.municipio} onChange={handleChange} disabled={isLoading} placeholder="Municipio" autoComplete="off" style={{ ...inputStyle(isLoading), ...err("municipio") }} />
-            </Field>
+  <CustomSelect
+    name="municipio"
+    value={form.municipio}
+    onChange={handleChange}
+    disabled={isLoading || !form.departamento}
+    options={MUNICIPIOS_POR_DEPTO[form.departamento] || []}
+    placeholder={form.departamento ? "Selecciona municipio..." : "Primero selecciona un departamento"}
+  />
+</Field>
             <Field label="Dirección de entrega">
               <textarea name="direccion_entrega" value={form.direccion_entrega} onChange={handleChange} disabled={isLoading} placeholder="Calle, número, colonia, referencias…" autoComplete="off" style={{ ...inputStyle(isLoading), resize: "vertical", minHeight: 64 }} />
             </Field>
