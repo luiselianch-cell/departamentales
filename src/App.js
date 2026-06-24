@@ -227,7 +227,7 @@ export default function FormularioDepartamentales() {
 
   const numeroFicha = "LOC-" + fecha + "-" + String(numero).padStart(3, "0");
 
-  const res = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_locales", {
+  const res = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_departamentales", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
