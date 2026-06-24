@@ -241,7 +241,7 @@ export default function FormularioDepartamentales() {
   return await res.json();
 }
 
-  aasync function enviarWhatsApp(orden) {
+  async function enviarWhatsApp(orden) {
   await fetch("https://dbpqfplomejtkoxjpvrn.supabase.co/functions/v1/super-service", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
