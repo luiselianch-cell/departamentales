@@ -34,6 +34,14 @@ const TIPOS_ENTREGA = [
   "En agencia de mensajeria (Cliente pasará a recoger)",
 ];
 
+const DEPARTAMENTOS = [
+  "SANTA ANA", "SAN MIGUEL", "AHUACHAPAN", "CABAÑAS",
+  "CHALATENANGO", "CUSCATLAN", "LA LIBERTAD", "LA UNION",
+  "LA PAZ", "MORAZAN", "SONSONATE", "SAN SALVADOR",
+  "SAN VICENTE", "USULUTAN",
+];
+
+
 const MUNICIPIOS_POR_DEPTO = {
   "SAN SALVADOR": ["San Salvador", "Apopa", "Ayutuxtepeque", "Cuscatancingo", "Ciudad Delgado", "Ilopango", "Mejicanos", "Nejapa", "Panchimalco", "Rosario de Mora", "San Marcos", "San Martín", "Santa Tecla", "Santiago Texacuangos", "Santo Tomás", "Soyapango", "Tonacatepeque"],
   "SANTA ANA": ["Santa Ana", "Candelaria de la Frontera", "Chalchuapa", "Coatepeque", "El Congo", "El Porvenir", "Masahuat", "Metapán", "San Antonio Pajonal", "San Sebastián Salitrillo", "Santa Rosa Guachipilín", "Santiago de la Frontera", "Texistepeque"],
@@ -224,8 +232,8 @@ if (dataUltimo.length > 0 && dataUltimo[0].numero_ficha) {
 }
 
 const numeroFicha = "LOC-" + fecha + "-" + String(numero).padStart(3, "0");
-    if (!res.ok) throw new Error("Error al guardar en base de datos");
-    return await res.json();
+    if (!resUltimo.ok) throw new Error("Error al guardar en base de datos");
+    return await resUltimo.json();
   }
 
   async function enviarWhatsApp(orden) {
