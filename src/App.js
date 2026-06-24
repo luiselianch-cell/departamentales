@@ -251,7 +251,7 @@ export default function FormularioDepartamentales() {
       body: JSON.stringify({
         phone: process.env.REACT_APP_WA_PHONE,
         apikey: process.env.REACT_APP_WA_APIKEY,
-       message: "🗂 Orden " + orden.numero_ficha +
+       message: " Orden " + orden.numero_ficha +
                 "\n" + orden.fecha_orden +
                 "\n" + orden.articulos +
                 "\n" + (orden.nombre_cliente || "Sin nombre") +
