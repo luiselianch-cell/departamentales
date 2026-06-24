@@ -205,7 +205,6 @@ export default function FormularioDepartamentales() {
 
   async function guardarEnSupabase(orden) {
     const hoy = new Date().toISOString().split("T")[0];
-    const resContador = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/contadores_diarios?fecha=eq." + hoy, {
       headers: {
         apikey: process.env.REACT_APP_SUPABASE_KEY,
         Authorization: "Bearer " + process.env.REACT_APP_SUPABASE_KEY,
