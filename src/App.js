@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 
 // eslint-disable-next-line no-unused-vars
 const mesActual = new Date().toLocaleString("es-ES", { month: "long", year: "numeric" });
@@ -130,7 +131,8 @@ function CustomSelect({ name, value, onChange, disabled, options, placeholder = 
         alignItems: "center", userSelect: "none",
       }}>
         <span style={{ color: value ? C.text : C.textMuted }}>{value || placeholder}</span>
-        <span style={{ color: C.accent }}>{open ? "^" : "v"}</span>
+        <ChevronUp size={16} color={C.accent} style={{ display: open ? "block" : "none" }} />
+<ChevronDown size={16} color={C.accent} style={{ display: open ? "none" : "block" }} />
       </div>
       {open && (
         <div style={{
@@ -397,7 +399,7 @@ export default function FormularioDepartamentales() {
               cursor: isLoading ? "default" : "pointer",
               letterSpacing: "0.02em",
             }}>
-              {isLoading ? "Guardando y notificando…" : "💾 Guardar orden y notificar por WhatsApp"}
+              {isLoading ? "Enviando..." : "Enviar Orden"}
             </button>
             <button onClick={() => { setForm({ ...initialForm, fecha_orden: today() }); setErrors({}); }} disabled={isLoading} style={{
               width: "100%", padding: "0.7rem", background: "transparent",
