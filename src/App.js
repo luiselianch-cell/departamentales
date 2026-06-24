@@ -282,7 +282,7 @@ export default function FormularioDepartamentales() {
   const err = (k) => errors[k] ? { border: "1px solid " + C.error } : {};
 
   return (
-    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Inter', system-ui, sans-serif", padding: "2rem 1rem 4rem" }}>
+    <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Inter', sans-serif", padding: "2rem 1rem 4rem" }}>
       <div style={{ maxWidth: 560, margin: "0 auto" }}>
         <div style={{ marginBottom: "1.75rem", textAlign: "center" }}>
           <div style={{
