@@ -252,19 +252,19 @@ export default function FormularioDepartamentales() {
         phone: process.env.REACT_APP_WA_PHONE,
         apikey: process.env.REACT_APP_WA_APIKEY,
        message: "🗂 Orden " + orden.numero_ficha +
-                "\n📅 " + orden.fecha_orden +
-                "\n📦 " + orden.articulos +
-                "\n👤 " + (orden.nombre_cliente || "Sin nombre") +
-                "\n📱 " + (orden.numero_contacto || "-") +
-                "\n🚚 " + orden.tipo_entrega +
-                "\n📍 " + orden.departamento + " - " + orden.municipio +
-                "\n📍 " + orden.direccion_entrega +
-                "\n🕐 " + (orden.hora_limite || "Sin hora límite") +
-                "\n💰 " + orden.total_pagar +
-                "\n💳 " + orden.forma_pago + " | " + orden.tipo_comprobante +
-                "\n📲 " + orden.perfil_salio_1 +
-                "\n👥 " + orden.quien_ingresa +
-              "\n📝 " + (orden.comentario_libre || "Sin notas"),
+                "\n" + orden.fecha_orden +
+                "\n" + orden.articulos +
+                "\n" + (orden.nombre_cliente || "Sin nombre") +
+                "\n" + (orden.numero_contacto || "-") +
+                "\n" + orden.tipo_entrega +
+                "\n" + orden.departamento + " - " + orden.municipio +
+                "\n" + orden.direccion_entrega +
+                "\n" + (orden.hora_limite || "Sin hora límite") +
+                "\n" + orden.total_pagar +
+                "\n" + orden.forma_pago + " | " + orden.tipo_comprobante +
+                "\n" + orden.perfil_salio_1 +
+                "\n" + orden.quien_ingresa +
+                "\n" + (orden.comentario_libre || "Sin notas"),
       }),
     });
   }
