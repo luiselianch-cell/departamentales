@@ -241,27 +241,29 @@ export default function FormularioDepartamentales() {
   return await res.json();
 }
 
-  async function enviarWhatsApp(orden) {
-  const message = encodeURIComponent(
-    "📦 *Orden DEP-" + orden.numero_ficha + "*" +
-    "\n📅 " + orden.fecha_orden +
-    "\n🛍️ " + orden.articulos +
-    "\n👤 " + (orden.nombre_cliente || "Sin nombre") +
-    "\n📞 " + (orden.numero_contacto || "-") +
-    "\n🚚 " + orden.tipo_entrega +
-    "\n📍 " + orden.departamento + " - " + orden.municipio +
-    "\n🏠 " + orden.direccion_entrega +
-    "\n⏰ " + (orden.hora_limite || "Sin hora límite") +
-    "\n💰 $" + orden.total_pagar +
-    "\n💳 " + orden.forma_pago + " | " + orden.tipo_comprobante +
-    "\n👤 Salió: " + orden.perfil_salio_1 +
-    "\n✍️ Ingresó: " + orden.quien_ingresa +
-    "\n📝 " + (orden.comentario_libre || "Sin notas")
-  );
-
-  const url = `https://api.callmebot.com/whatsapp.php?phone=${process.env.REACT_APP_WA_PHONE}&text=${message}&apikey=${process.env.REACT_APP_WA_APIKEY}`;
-
-  await fetch(url);
+  aasync function enviarWhatsApp(orden) {
+  await fetch("https://dbpqfplomejtkoxjpvrn.supabase.co/functions/v1/super-service", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      phone: process.env.REACT_APP_WA_PHONE,
+      apikey: process.env.REACT_APP_WA_APIKEY,
+      message: "📦 *Orden DEP-" + orden.numero_ficha + "*" +
+        "\n📅 " + orden.fecha_orden +
+        "\n🛍️ " + orden.articulos +
+        "\n👤 " + (orden.nombre_cliente || "Sin nombre") +
+        "\n📞 " + (orden.numero_contacto || "-") +
+        "\n🚚 " + orden.tipo_entrega +
+        "\n📍 " + orden.departamento + " - " + orden.municipio +
+        "\n🏠 " + orden.direccion_entrega +
+        "\n⏰ " + (orden.hora_limite || "Sin hora límite") +
+        "\n💰 $" + orden.total_pagar +
+        "\n💳 " + orden.forma_pago + " | " + orden.tipo_comprobante +
+        "\n👤 Salió: " + orden.perfil_salio_1 +
+        "\n✍️ Ingresó: " + orden.quien_ingresa +
+        "\n📝 " + (orden.comentario_libre || "Sin notas")
+    }),
+  });
 }
 
   async function handleSubmit() {
