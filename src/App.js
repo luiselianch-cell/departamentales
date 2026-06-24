@@ -204,10 +204,10 @@ export default function FormularioDepartamentales() {
       },
     });
     const contadores = await resContador.json();
-    const hoy = new Date();
-const fecha = String(hoy.getFullYear()).slice(2) +
-  String(hoy.getMonth() + 1).padStart(2, "0") +
-  String(hoy.getDate()).padStart(2, "0");
+    const ahora = new Date();
+const fecha = String(ahora.getFullYear()).slice(2) +
+  String(ahora.getMonth() + 1).padStart(2, "0") +
+  String(ahora.getDate()).padStart(2, "0");
 
 const resUltimo = await fetch(process.env.REACT_APP_SUPABASE_URL + "/rest/v1/ordenes_locales?select=numero_ficha&order=id.desc&limit=1", {
   headers: {
