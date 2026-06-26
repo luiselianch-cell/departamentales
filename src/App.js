@@ -60,17 +60,11 @@ const MUNICIPIOS_POR_DEPTO = {
   "USULUTAN": ["Usulután", "Alegría", "Berlín", "California", "Concepción Batres", "El Triunfo", "Ereguayquín", "Estanzuelas", "Jiquilisco", "Jucuapa", "Jucuarán", "Mercedes Umaña", "Nueva Granada", "Ozatlán", "Puerto El Triunfo", "San Agustín", "San Buenaventura", "San Dionisio", "San Francisco Javier", "Santa Elena", "Santa María", "Santiago de María", "Tecapán"],
 };
 
-const FORMAS_PAGO = ["Efectivo", "Transferencia", "Tarjeta", "PayPal", "Otro"];
-const TIPOS_COMPROBANTE = ["Ticket", "Factura", "Sin comprobante"];
-const COMENTARIOS_PREDET = ["Sin comentario", "Frágil", "Urgente", "Con cambio"];
-const PERFILES = ["Instagram", "Facebook", "TikTok", "WhatsApp", "Referido", "Otro"];
-const QUIEN_INGRESA = [
-  "Tecno Gadget - Fer",
-  "Tecno Gadget - Jefferson",
-  "Tecno Gadget - Wendy",
-  "Tecno Gadget - Liss",
-  "Tecno Gadget - Isa",
-];
+const FORMAS_PAGO = ["Efectivo (Contraentrega)", "Transferencia Bancaria (Ya completo el pago)", "Transferencia Bancaria (Pagará cuando reciba)", "Link de Pago con Tarjeta (Ya completo el pago)", "Link de Pago con Tarjeta (Pagará cuando reciba)", "Otra forma de pago"];
+const TIPOS_COMPROBANTE = ["Ticket Normal", "FACTURA CONSUMIDOR FINAL", "FACTURA CREDITO FISCAL", "Asignar comprobante"];
+const COMENTARIOS_PREDET = ["Contactar al cliente con anticipación para coordinar entrega", "Cliente enviará la ubicación de entrega", "Cliente ya completó el pago, solo entregar", "Cliente pide que le contacten por Whatsapp", "Cliente pide que le contacten por llamada directa", "Favor entregar en vigilancia del lugar", "Favor entregar en recepción del lugar", "Cliente indica que puede recibir desde ya", "Descuento previamente autorizado por Caleb"];
+const PERFILES = ["WhatsApp Principal", "Inbox Pagina FB", "WhatsApp Negro", "P. Personal Yanci", "P. Personal Sarai Eunice", "P. Personal Caleb", "P. Personal Kevin", "P. Personal Maressa", "P. Personal Marisol", "Perfil Andrea Marketplace", "Perfil Jessica Marketplace", "WhatsApp Del Jefazo Caleb", "Instagram", "Cliente ordeno por llamada", "Pedido Pagina web Tecno Gadget", "Otro WhatsApp"];
+const QUIEN_INGRESA = ["Tecno Gadget - Fer", "Tecno Gadget - Jefferson", "Tecno Gadget - Wendy", "Tecno Gadget - Liss", "Tecno Gadget - Isa", "Tecno Gadget - Josue", "Yanci (Vend)", "Sara Eunice (Vend)", "Kevin (Vend)", "Maressa (Vend)", "Marisol (Vend)", "Herbert (Vend)", "Caleb (Venta Propia)", "Pedido de Pagina Web"];
 
 const today = () => new Date().toISOString().split("T")[0];
 
@@ -177,15 +171,23 @@ function Section({ title, children }) {
 }
 
 export default function FormularioDepartamentales() {
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState(() => {
+  const saved = localStorage.getItem("borrador_depto");
+  return saved ? JSON.parse(saved) : initialForm;
+});
   const [status, setStatus] = useState("idle");
   const [errors, setErrors] = useState({});
   const [historial, setHistorial] = useState([]);
 
   const isLoading = status === "loading";
 
-  function handleChange(e) {
+ function handleChange(e) {
   const { name, value } = e.target;
+  setForm(p => {
+    const nuevo = { ...p, [name]: value };
+    localStorage.setItem("borrador_depto", JSON.stringify(nuevo));
+    return nuevo;
+  });
   if (name === "departamento") {
     setForm(p => ({ ...p, departamento: value, municipio: "" }));
   } else {
@@ -274,6 +276,7 @@ export default function FormularioDepartamentales() {
       const [saved] = await guardarEnSupabase(orden);
       await enviarWhatsApp({ ...orden, numero_ficha: saved.numero_ficha });
       setHistorial((p) => [saved, ...p].slice(0, 6));
+      localStorage.removeItem("borrador_depto");
       setForm({ ...initialForm, fecha_orden: today() });
       setStatus("success");
       setTimeout(() => setStatus("idle"), 4000);
