@@ -338,7 +338,7 @@ export default function FormularioDepartamentales() {
             <Field label="Nombre del cliente">
               <input name="nombre_cliente" value={form.nombre_cliente} onChange={handleChange} disabled={isLoading} placeholder="Nombre completo" autoComplete="off" style={inputStyle(isLoading)} />
             </Field>
-            <Field label="Número de contacto *" required={} hint="Ingresar todos los números juntos. Ejemplo: 71002233">
+            <Field label="Número de contacto" required hint="Ingresar todos los números juntos. Ejemplo: 71002233">
               <input name="numero_contacto" value={form.numero_contacto} onChange={handleChange} disabled={isLoading} placeholder="71002233" type="tel" autoComplete="off" style={inputStyle(isLoading)} />
             </Field>
           </Section>
