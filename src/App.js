@@ -203,7 +203,7 @@ export default function FormularioDepartamentales() {
   function validate() {
     const required = [
       "fecha_orden", "articulos", "numero_contacto", "tipo_entrega", "departamento",
-      "municipio", "total_pagar", "forma_pago", "tipo_comprobante",
+      "municipio", "direccion_entrega", "total_pagar", "forma_pago", "tipo_comprobante",
       "perfil_salio", "quien_ingresa",
     ];
     const errs = {};
@@ -303,7 +303,7 @@ export default function FormularioDepartamentales() {
           }}>{"TECNO GADGET · " + mesActual.toUpperCase()}</div>
           <h1 style={{ fontSize: "1.8rem", fontWeight: 800, color: C.primary, margin: 0, lineHeight: 1.15 }}>Orden Departamental</h1>
           <p style={{ color: C.textMuted, fontSize: "0.82rem", marginTop: "0.35rem", marginBottom: 0 }}>
-            Los d con <span style={{ color: C.error }}>*</span> son obligatorios.
+            Los campos con <span style={{ color: C.error }}>*</span> son obligatorios.
           </p>
         </div>
 
@@ -363,7 +363,7 @@ export default function FormularioDepartamentales() {
   />
 </Field>
             <Field label="Dirección de entrega">
-              <textarea name="direccion_entrega" value={form.direccion_entrega} onChange={handleChange} disabled={isLoading} placeholder="Calle, número, colonia, referencias…" autoComplete="off" style={{ ...inputStyle(isLoading), resize: "vertical", minHeight: 64 }} />
+              <textarea name="direccion_entrega" required value={form.direccion_entrega} onChange={handleChange} disabled={isLoading} placeholder="Calle, número, colonia, referencias…" autoComplete="off" style={{ ...inputStyle(isLoading), resize: "vertical", minHeight: 64 }} />
             </Field>
           </Section>
 
