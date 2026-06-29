@@ -303,7 +303,7 @@ export default function FormularioDepartamentales() {
           }}>{"TECNO GADGET · " + mesActual.toUpperCase()}</div>
           <h1 style={{ fontSize: "1.8rem", fontWeight: 800, color: C.primary, margin: 0, lineHeight: 1.15 }}>Orden Departamental</h1>
           <p style={{ color: C.textMuted, fontSize: "0.82rem", marginTop: "0.35rem", marginBottom: 0 }}>
-            Los campos con <span style={{ color: C.error }}>*</span> son obligatorios.
+            Los d con <span style={{ color: C.error }}>*</span> son obligatorios.
           </p>
         </div>
 
@@ -330,7 +330,7 @@ export default function FormularioDepartamentales() {
               <input type="date" name="fecha_orden" value={form.fecha_orden} onChange={handleChange} disabled={isLoading} style={{ ...inputStyle(isLoading), ...err("fecha_orden") }} />
             </Field>
             <Field label="Artículos a enviar" required hint="Si el producto tiene código o modelo, ingrésalo para facilitar la preparación del paquete.">
-              <textarea name="articulos" value={form.articulos} onChange={handleChange} disabled={isLoading} placeholder="Ej: 2x Modelo-A001…" autoComplete="off" style={{ ...inputStyle(isLoading), ...err("articulos"), resize: "vertical", minHeight: 72 }} />
+              <textarea name="articulos" value={form.articulos} onChange={handleChange} disabled={isLoading} placeholder="Tu respuesta..." autoComplete="off" style={{ ...inputStyle(isLoading), ...err("articulos"), resize: "vertical", minHeight: 72 }} />
             </Field>
           </Section>
 
@@ -338,7 +338,7 @@ export default function FormularioDepartamentales() {
             <Field label="Nombre del cliente">
               <input name="nombre_cliente" value={form.nombre_cliente} onChange={handleChange} disabled={isLoading} placeholder="Nombre completo" autoComplete="off" style={inputStyle(isLoading)} />
             </Field>
-            <Field label="Número de contacto" hint="Ingresar todos los números juntos. Ejemplo: 71002233">
+            <Field label="Número de contacto *" required={} hint="Ingresar todos los números juntos. Ejemplo: 71002233">
               <input name="numero_contacto" value={form.numero_contacto} onChange={handleChange} disabled={isLoading} placeholder="71002233" type="tel" autoComplete="off" style={inputStyle(isLoading)} />
             </Field>
           </Section>
