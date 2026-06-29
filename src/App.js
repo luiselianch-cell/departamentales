@@ -202,9 +202,9 @@ export default function FormularioDepartamentales() {
 
   function validate() {
     const required = [
-      "fecha_orden", "articulos", "tipo_entrega", "departamento",
+      "fecha_orden", "articulos", "numero_contacto", "tipo_entrega", "departamento",
       "municipio", "total_pagar", "forma_pago", "tipo_comprobante",
-      "perfil_salio", "quien_ingresa", "numero_contacto"
+      "perfil_salio", "quien_ingresa",
     ];
     const errs = {};
     required.forEach((k) => { if (!form[k]) errs[k] = true; });
